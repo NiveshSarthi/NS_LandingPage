@@ -1,26 +1,137 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
+@theme {
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+
+    to {
+      height: 0;
+    }
   }
 }
 
+:root {
+  --background: #f8f7ff;
+  /* Very light purple tint */
+  --foreground: #1e1b4b;
+  /* Deep Indigo 950 */
+
+  --card: #ffffff;
+  --card-foreground: #1e1b4b;
+
+  --popover: #ffffff;
+  --popover-foreground: #1e1b4b;
+
+  --primary: #7c3aed;
+  /* Violet 600 */
+  --primary-foreground: #ffffff;
+
+  --secondary: #eab308;
+  /* Yellow 500 for accents/gold touches */
+  --secondary-foreground: #1e1b4b;
+
+  --muted: #f3f4f6;
+  --muted-foreground: #6b7280;
+
+  --accent: #ddd6fe;
+  /* Violet 200 */
+  --accent-foreground: #1e1b4b;
+
+  --destructive: #ef4444;
+  --destructive-foreground: #f8fafc;
+
+  --border: #e2e8f0;
+  --input: #e2e8f0;
+  --ring: #7c3aed;
+
+  --radius: 1rem;
+  /* More rounded cards */
+}
+
+.dark {
+  --background: #1e1b4b;
+  /* Deep Indigo */
+  --foreground: #f8fafc;
+
+  --card: #2e1065;
+  /* Darker Violet */
+  --card-foreground: #f8fafc;
+
+  --popover: #2e1065;
+  --popover-foreground: #f8fafc;
+
+  --primary: #a78bfa;
+  /* Violet 400 */
+  --primary-foreground: #1e1b4b;
+
+  --secondary: #fbbf24;
+  /* Amber 400 */
+  --secondary-foreground: #1e1b4b;
+
+  --muted: #4c1d95;
+  --muted-foreground: #a78bfa;
+
+  --accent: #5b21b6;
+  --accent-foreground: #ffffff;
+
+  --destructive: #7f1d1d;
+  --destructive-foreground: #f8fafc;
+
+  --border: #4c1d95;
+  --input: #4c1d95;
+  --ring: #a78bfa;
+}
+
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
