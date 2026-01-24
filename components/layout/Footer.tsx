@@ -8,7 +8,7 @@ export function Footer() {
             <div className="container mx-auto px-4 md:px-6">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
                     <div className="md:col-span-1 space-y-4">
-                        <Logo className="invert brightness-200" />
+                        <Logo />
                         <p className="text-sm text-gray-400 leading-relaxed">
                             {content.footer.description}
                         </p>

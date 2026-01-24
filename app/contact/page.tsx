@@ -107,9 +107,17 @@ export default function ContactPage() {
                                 </Card>
                             </div>
 
-                            {/* Map Placeholder */}
-                            <div className="bg-muted rounded-xl h-64 w-full flex items-center justify-center text-muted-foreground border">
-                                <p>Map Integration Placeholder</p>
+                            {/* Map Integration */}
+                            <div className="bg-muted rounded-xl h-80 w-full overflow-hidden border shadow-sm">
+                                <iframe
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3509.871148557102!2d77.3401548!3d28.392959499999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cdd1ebc130233%3A0xb86d2aa9b527df59!2sPuri%20Business%20Hub%2C%20A%20209%2C%20Sector%2081%2C%20Faridabad%2C%20Haryana%20121007!5e0!3m2!1sen!2sin!4v1769238530936!5m2!1sen!2sin"
+                                    width="100%"
+                                    height="100%"
+                                    style={{ border: 0 }}
+                                    allowFullScreen
+                                    loading="lazy"
+                                    referrerPolicy="no-referrer-when-downgrade"
+                                />
                             </div>
                         </div>
                     </div>
