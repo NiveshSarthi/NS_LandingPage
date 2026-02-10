@@ -174,6 +174,7 @@ export const content = {
         {
             name: "Rakesh Kushwaha",
             role: "Co-Founder",
+            avatar: "/images/Rakesh_Profile.jpeg",
             initials: "RK",
             color: "bg-pink-100 text-pink-600"
         }
