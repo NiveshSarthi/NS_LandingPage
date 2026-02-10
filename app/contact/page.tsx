@@ -107,9 +107,9 @@ export default function ContactPage() {
                                     { icon: Mail, title: "Email", val: content.contact.email, subtitle: "Response: within 24 hours", link: `mailto:${content.contact.email}` }
                                 ].map((item, i) => (
                                     <Card key={i} className="rounded-none border-none shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_50px_rgba(197,160,89,0.15)] transition-all duration-700 group cursor-default">
-                                        <CardContent className="p-8 flex items-center gap-8">
-                                            <div className="w-16 h-16 bg-slate-50 flex items-center justify-center text-secondary group-hover:bg-primary group-hover:text-white transition-all duration-500 shadow-inner">
-                                                <item.icon size={28} />
+                                        <CardContent className="p-6 md:p-8 flex items-center gap-4 md:gap-8">
+                                            <div className="w-14 h-14 md:w-16 md:h-16 shrink-0 bg-slate-50 flex items-center justify-center text-secondary group-hover:bg-primary group-hover:text-white transition-all duration-500 shadow-inner">
+                                                <item.icon size={24} />
                                             </div>
                                             <div>
                                                 <h4 className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1">{item.title}</h4>

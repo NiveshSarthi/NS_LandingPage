@@ -84,11 +84,11 @@ export function ExpertAdvice() {
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
-                        className="bg-white text-primary p-12 md:p-20 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.5)] border-t-[12px] border-secondary relative overflow-hidden"
+                        className="bg-white text-primary p-8 sm:p-12 md:p-20 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.5)] border-t-[12px] border-secondary relative overflow-hidden"
                     >
                         <div className="absolute top-0 right-0 w-32 h-32 bg-secondary/5 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2" />
 
-                        <h3 className="text-4xl font-bold mb-4 tracking-tight">Request a <span className="text-secondary">Callback</span></h3>
+                        <h3 className="text-3xl md:text-4xl font-bold mb-4 tracking-tight">Request a <span className="text-secondary">Callback</span></h3>
                         <p className="text-slate-500 mb-12 text-sm font-light leading-relaxed">Your property journey starts with a simple conversation. Let us help you find the perfect match.</p>
 
                         <form className="space-y-10">

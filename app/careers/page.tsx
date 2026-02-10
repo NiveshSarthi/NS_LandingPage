@@ -47,10 +47,10 @@ export default function CareersPage() {
                             <Rocket size={12} />
                             <span>We are hiring!</span>
                         </div>
-                        <h1 className="text-4xl md:text-6xl lg:text-8xl font-bold tracking-tight mb-8 text-white leading-[1.1]">
+                        <h1 className="text-3xl md:text-6xl lg:text-8xl font-bold tracking-tight mb-8 text-white leading-[1.1]">
                             Build the <span className="italic text-secondary font-serif">Future</span> <br /> of Real Estate
                         </h1>
-                        <p className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto mb-12 font-light leading-relaxed">
+                        <p className="text-base md:text-xl text-slate-300 max-w-2xl mx-auto mb-12 font-light leading-relaxed">
                             Join a team of visionaries, creators, and achievers. At NiveshSarthi, we don't just sell properties; we fulfill dreams.
                         </p>
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
@@ -118,23 +118,23 @@ export default function CareersPage() {
                                 <div className="absolute top-0 left-0 w-1 h-full bg-secondary scale-y-0 group-hover:scale-y-100 transition-transform duration-500 origin-top" />
                                 <div className="absolute top-0 right-0 w-32 h-32 bg-secondary/5 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
-                                <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 relative z-10">
+                                <div className="flex flex-col lg:flex-row items-baseline lg:items-center justify-between gap-6 relative z-10">
                                     <div className="flex items-start gap-6">
-                                        <div className="p-4 bg-slate-50 group-hover:bg-primary group-hover:text-white transition-colors duration-500 shadow-inner">
+                                        <div className="p-4 bg-slate-50 group-hover:bg-primary group-hover:text-white transition-colors duration-500 shadow-inner shrink-0">
                                             <Briefcase size={24} className="text-secondary group-hover:text-white transition-colors duration-500" />
                                         </div>
                                         <div>
-                                            <h4 className="text-xl font-bold group-hover:text-primary transition-colors duration-300 tracking-wide">{job.title}</h4>
+                                            <h4 className="text-lg md:text-xl font-bold group-hover:text-primary transition-colors duration-300 tracking-wide">{job.title}</h4>
                                             <div className="flex flex-wrap gap-x-6 gap-y-2 text-[10px] text-slate-500 mt-3 font-bold uppercase tracking-widest">
                                                 <span className="flex items-center gap-2"><UserPlus size={14} className="text-secondary" /> {job.department}</span>
-                                                <span className="text-slate-200">|</span>
+                                                <span className="hidden sm:inline text-slate-200">|</span>
                                                 <span>{job.type}</span>
-                                                <span className="text-slate-200">|</span>
+                                                <span className="hidden sm:inline text-slate-200">|</span>
                                                 <span className="flex items-center gap-2 text-slate-500">📍 {job.location}</span>
                                             </div>
                                         </div>
                                     </div>
-                                    <Button className="md:opacity-0 group-hover:opacity-100 transition-all duration-500 bg-primary hover:bg-secondary text-white rounded-none px-8 font-bold uppercase tracking-widest text-[10px] shadow-lg">
+                                    <Button className="w-full lg:w-auto lg:opacity-0 group-hover:opacity-100 transition-all duration-500 bg-primary hover:bg-secondary text-white rounded-none px-8 font-bold uppercase tracking-widest text-[10px] shadow-lg">
                                         Apply Now
                                     </Button>
                                 </div>

@@ -46,10 +46,10 @@ export default function AboutPage() {
                             <ShieldCheck size={12} />
                             <span>Legacy of Trust Since 2011</span>
                         </div>
-                        <h1 className="text-4xl md:text-6xl lg:text-8xl font-bold tracking-tight mb-8 text-white leading-[1.1]">
+                        <h1 className="text-3xl md:text-6xl lg:text-8xl font-bold tracking-tight mb-8 text-white leading-[1.1]">
                             Redefining the <span className="italic text-secondary font-serif">Aura</span> <br /> of Real Estate
                         </h1>
-                        <p className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto mb-12 font-light leading-relaxed">
+                        <p className="text-base md:text-xl text-slate-300 max-w-2xl mx-auto mb-12 font-light leading-relaxed">
                             We go beyond traditional brokerage. As your strategic partner, we empower you with data-driven insights and curated opportunities to build lasting wealth.
                         </p>
 

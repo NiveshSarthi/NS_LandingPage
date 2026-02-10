@@ -100,8 +100,8 @@ export function Testimonials() {
                         transition={{ duration: 0.8 }}
                         className="relative"
                     >
-                        <div className="bg-white p-10 md:p-16 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] relative overflow-hidden border border-slate-50">
-                            <Quote size={80} className="text-secondary/10 absolute top-10 right-10" />
+                        <div className="bg-white p-6 sm:p-10 md:p-16 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] relative overflow-hidden border border-slate-50">
+                            <Quote size={80} className="text-secondary/10 absolute top-6 right-6 sm:top-10 sm:right-10" />
 
                             <AnimatePresence mode="wait">
                                 <motion.div

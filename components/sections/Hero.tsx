@@ -48,7 +48,7 @@ export function Hero() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 0.4 }}
                     transition={{ duration: 2 }}
-                    className="absolute top-1/4 -right-20 w-[600px] h-[600px] bg-secondary/10 rounded-full blur-[150px] animate-float z-10"
+                    className="absolute top-1/4 -right-20 w-[300px] h-[300px] md:w-[600px] md:h-[600px] bg-secondary/10 rounded-full blur-[80px] md:blur-[150px] animate-float z-10"
                 />
             </div>
 
@@ -57,7 +57,7 @@ export function Hero() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
-                    className="inline-flex items-center rounded-none border-l-4 border-secondary px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] bg-white/5 backdrop-blur-sm text-white mb-8 relative group"
+                    className="inline-flex items-center rounded-none border-l-4 border-secondary px-4 py-1.5 text-[10px] md:text-xs font-semibold uppercase tracking-[0.2em] bg-white/5 backdrop-blur-sm text-white mb-8 relative group"
                 >
                     <motion.div
                         className="absolute inset-0 bg-white/5 -translate-x-full group-hover:translate-x-0 transition-transform duration-500"
@@ -69,7 +69,7 @@ export function Hero() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.1 }}
-                    className="text-5xl md:text-7xl lg:text-9xl font-bold tracking-tight text-white max-w-5xl mb-8 shadow-sm leading-[1.1]"
+                    className="text-4xl md:text-7xl lg:text-9xl font-bold tracking-tight text-white max-w-5xl mb-8 shadow-sm leading-[1.1]"
                 >
                     {content.hero.title.split(' ').map((word, i) => (
                         <span key={i} className={i === 2 ? "text-gradient-gold" : ""}>{word} </span>

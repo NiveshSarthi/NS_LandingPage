@@ -107,8 +107,8 @@ export function Properties() {
                     ))}
                 </div>
 
-                <div className="mt-8 text-center md:hidden">
-                    <Button variant="premium" className="bg-primary text-white rounded-full w-full">
+                <div className="mt-12 text-center md:hidden">
+                    <Button className="w-full bg-primary text-white rounded-none h-14 font-bold uppercase tracking-widest text-[11px] shadow-lg gold-glow-hover transition-all">
                         View All Properties
                     </Button>
                 </div>

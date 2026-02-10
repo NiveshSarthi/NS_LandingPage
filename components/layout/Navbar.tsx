@@ -13,6 +13,7 @@ export function Navbar() {
     const [isScrolled, setIsScrolled] = React.useState(false);
     const { scrollY } = useScroll();
     const pathname = usePathname();
+    const [isOpen, setIsOpen] = React.useState(false);
 
     useMotionValueEvent(scrollY, "change", (latest) => {
         if (latest > 50) {
@@ -30,11 +31,10 @@ export function Navbar() {
         { href: '/contact', label: 'Contact' },
     ];
 
-    const springTransition = {
-        type: "spring" as const,
-        stiffness: 260,
-        damping: 20
-    };
+    // Close menu on route change
+    React.useEffect(() => {
+        setIsOpen(false);
+    }, [pathname]);
 
     return (
         <React.Fragment>
@@ -44,7 +44,7 @@ export function Navbar() {
                 animate={{ y: 0 }}
                 className={cn(
                     "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
-                    (isScrolled || pathname !== '/')
+                    (isScrolled || pathname !== '/' || isOpen)
                         ? "bg-primary/95 backdrop-blur-lg border-b border-white/5 py-3 shadow-lg"
                         : "bg-transparent py-7"
                 )}
@@ -86,16 +86,62 @@ export function Navbar() {
                         </div>
 
                         {/* Mobile Menu Toggle */}
-                        <button className="md:hidden text-white p-2">
-                            <Menu size={28} />
+                        <button
+                            onClick={() => setIsOpen(!isOpen)}
+                            className="md:hidden text-white p-2 transition-transform active:scale-95"
+                            aria-label="Toggle Menu"
+                        >
+                            {isOpen ? <X size={28} /> : <Menu size={28} />}
                         </button>
                     </div>
                 </div>
             </motion.header>
 
-            {/* Mobile Menu Button - Fixed bottom right or top right? Keeping simple for now, maybe add mobile overlay later if needed. 
-                For now main requirement is desktop scroll behavior. 
-            */}
+            {/* Mobile Menu Overlay */}
+            <AnimatePresence>
+                {isOpen && (
+                    <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: '100vh' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        className="fixed inset-0 z-40 bg-primary/98 backdrop-blur-xl md:hidden overflow-hidden"
+                    >
+                        <nav className="flex flex-col items-center justify-center h-full gap-8 px-6">
+                            {links.map((link, i) => (
+                                <motion.div
+                                    key={link.href}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.1 * i }}
+                                >
+                                    <Link
+                                        href={link.href}
+                                        className={cn(
+                                            "text-3xl font-bold uppercase tracking-[0.2em] transition-colors",
+                                            pathname === link.href ? "text-secondary" : "text-white/60 hover:text-white"
+                                        )}
+                                    >
+                                        {link.label}
+                                    </Link>
+                                </motion.div>
+                            ))}
+                            <motion.div
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{ delay: 0.5 }}
+                                className="mt-12 w-full max-w-[280px]"
+                            >
+                                <Button
+                                    asChild
+                                    className="w-full bg-secondary hover:bg-white hover:text-primary text-white h-16 rounded-none font-bold uppercase tracking-[0.3em] text-xs shadow-2xl transition-all"
+                                >
+                                    <Link href="/contact">Book Consult</Link>
+                                </Button>
+                            </motion.div>
+                        </nav>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </React.Fragment>
     );
 }
