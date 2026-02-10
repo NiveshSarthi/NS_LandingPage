@@ -6,7 +6,7 @@ export function Logo({ className }: { className?: string }) {
         <Link href="/" className={`block relative ${className}`}>
             <div className="relative h-12 w-40 md:h-14 md:w-48">
                 <Image
-                    src="/SNS.png"
+                    src="/logo.png"
                     alt="NiveshSarthi Logo"
                     fill
                     className="object-contain object-left"
