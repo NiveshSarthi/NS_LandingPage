@@ -3,9 +3,30 @@
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Phone, Mail, Clock, MapPin, ArrowRight } from 'lucide-react';
+import { Phone, Mail, Clock, MapPin, ArrowRight, Loader2 } from 'lucide-react';
+import { sendEmail } from '@/lib/actions';
+import { useState } from 'react';
 
 export function ExpertAdvice() {
+    const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+
+    async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+        event.preventDefault();
+        setStatus('loading');
+
+        const formData = new FormData(event.currentTarget);
+        formData.append('formType', 'Expert Advice');
+
+        const result = await sendEmail(formData);
+
+        if (result.success) {
+            setStatus('success');
+            (event.target as HTMLFormElement).reset();
+        } else {
+            setStatus('error');
+        }
+    }
+
     return (
         <section className="py-24 bg-primary text-white relative overflow-hidden">
             <div className="absolute inset-0 bg-pattern-circuit opacity-10" />
@@ -91,24 +112,41 @@ export function ExpertAdvice() {
                         <h3 className="text-3xl md:text-4xl font-bold mb-4 tracking-tight">Request a <span className="text-secondary">Callback</span></h3>
                         <p className="text-slate-500 mb-12 text-sm font-light leading-relaxed">Your property journey starts with a simple conversation. Let us help you find the perfect match.</p>
 
-                        <form className="space-y-10">
+                        <form className="space-y-10" onSubmit={handleSubmit}>
                             {[
-                                { placeholder: "Your Name *", type: "text" },
-                                { placeholder: "Your Email", type: "email" },
-                                { placeholder: "Your Mobile *", type: "tel" }
+                                { name: "name", placeholder: "Your Name *", type: "text", required: true },
+                                { name: "email", placeholder: "Your Email", type: "email", required: false },
+                                { name: "phone", placeholder: "Your Mobile *", type: "tel", required: true }
                             ].map((input, i) => (
                                 <div key={i} className="space-y-1 border-b border-slate-100 pb-3 group focus-within:border-secondary transition-colors">
                                     <Input
+                                        name={input.name}
                                         type={input.type}
                                         placeholder={input.placeholder}
+                                        required={input.required}
                                         className="border-none bg-transparent h-14 focus-visible:ring-0 px-0 text-xl font-medium placeholder:text-slate-200"
                                     />
                                 </div>
                             ))}
 
-                            <Button className="w-full h-18 text-xs font-bold uppercase tracking-[0.4em] bg-primary hover:bg-secondary text-white shadow-2xl transition-all hover:translate-y-[-4px] rounded-none group">
-                                Submit Request <ArrowRight className="ml-6 w-5 h-5 text-secondary group-hover:text-white transition-colors" />
+                            <Button
+                                type="submit"
+                                disabled={status === 'loading'}
+                                className="w-full h-18 text-xs font-bold uppercase tracking-[0.4em] bg-primary hover:bg-secondary text-white shadow-2xl transition-all hover:translate-y-[-4px] rounded-none group"
+                            >
+                                {status === 'loading' ? (
+                                    <>Processing <Loader2 className="ml-6 w-5 h-5 animate-spin" /></>
+                                ) : (
+                                    <>Submit Request <ArrowRight className="ml-6 w-5 h-5 text-secondary group-hover:text-white transition-colors" /></>
+                                )}
                             </Button>
+
+                            {status === 'success' && (
+                                <p className="text-green-500 text-center text-sm font-medium mt-4">Thank you! We will get back to you shortly.</p>
+                            )}
+                            {status === 'error' && (
+                                <p className="text-red-500 text-center text-sm font-medium mt-4">Something went wrong. Please try again later.</p>
+                            )}
                         </form>
                         <p className="text-[10px] text-slate-400 mt-12 text-center uppercase tracking-[0.2em] font-bold">
                             Professionalism Guaranteed • Private & Confidential

@@ -8,11 +8,32 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent } from '@/components/ui/card';
-import { Phone, Mail, MapPin, Send } from 'lucide-react';
+import { Phone, Mail, MapPin, Send, Loader2 } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { sendEmail } from '@/lib/actions';
+import { useState } from 'react';
 
 
 export default function ContactPage() {
+    const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+
+    async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+        event.preventDefault();
+        setStatus('loading');
+
+        const formData = new FormData(event.currentTarget);
+        formData.append('formType', 'Contact Page Message');
+
+        const result = await sendEmail(formData);
+
+        if (result.success) {
+            setStatus('success');
+            (event.target as HTMLFormElement).reset();
+        } else {
+            setStatus('error');
+        }
+    }
+
     return (
         <main className="min-h-screen bg-background">
             <Navbar />
@@ -63,28 +84,43 @@ export default function ContactPage() {
                                 <h3 className="text-4xl font-bold mb-4 tracking-tight">Send us a <span className="text-secondary">Message</span></h3>
                                 <p className="text-slate-500 text-lg font-light leading-relaxed">Fill in the form below and our dedicated team will get back to you within 24 hours.</p>
                             </div>
-                            <form className="space-y-10">
+                            <form className="space-y-10" onSubmit={handleSubmit}>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
                                     <div className="space-y-1 border-b border-slate-100 pb-3 focus-within:border-secondary transition-colors">
                                         <label htmlFor="name" className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Full Name *</label>
-                                        <Input id="name" placeholder="John Doe" className="border-none bg-transparent h-12 focus-visible:ring-0 px-0 text-lg font-medium placeholder:text-slate-200" />
+                                        <Input id="name" name="name" required placeholder="John Doe" className="border-none bg-transparent h-12 focus-visible:ring-0 px-0 text-lg font-medium placeholder:text-slate-200" />
                                     </div>
                                     <div className="space-y-1 border-b border-slate-100 pb-3 focus-within:border-secondary transition-colors">
                                         <label htmlFor="email" className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Email Address *</label>
-                                        <Input id="email" type="email" placeholder="john@example.com" className="border-none bg-transparent h-12 focus-visible:ring-0 px-0 text-lg font-medium placeholder:text-slate-200" />
+                                        <Input id="email" name="email" type="email" required placeholder="john@example.com" className="border-none bg-transparent h-12 focus-visible:ring-0 px-0 text-lg font-medium placeholder:text-slate-200" />
                                     </div>
                                 </div>
                                 <div className="space-y-1 border-b border-slate-100 pb-3 focus-within:border-secondary transition-colors">
                                     <label htmlFor="phone" className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Phone Number *</label>
-                                    <Input id="phone" type="tel" placeholder="+91 98765 43210" className="border-none bg-transparent h-12 focus-visible:ring-0 px-0 text-lg font-medium placeholder:text-slate-200" />
+                                    <Input id="phone" name="phone" type="tel" required placeholder="+91 98765 43210" className="border-none bg-transparent h-12 focus-visible:ring-0 px-0 text-lg font-medium placeholder:text-slate-200" />
                                 </div>
                                 <div className="space-y-1 border-b border-slate-100 pb-3 focus-within:border-secondary transition-colors">
                                     <label htmlFor="message" className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Your Message</label>
-                                    <Textarea id="message" placeholder="How can we help you achieve your goals?" className="min-h-[150px] border-none bg-transparent focus-visible:ring-0 px-0 text-lg font-medium placeholder:text-slate-200 resize-none" />
+                                    <Textarea id="message" name="message" placeholder="How can we help you achieve your goals?" className="min-h-[150px] border-none bg-transparent focus-visible:ring-0 px-0 text-lg font-medium placeholder:text-slate-200 resize-none" />
                                 </div>
-                                <Button className="w-full h-18 text-xs font-bold uppercase tracking-[0.4em] bg-primary hover:bg-secondary text-white shadow-2xl transition-all hover:translate-y-[-4px] rounded-none group">
-                                    Send Message <Send size={18} className="ml-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                                <Button
+                                    type="submit"
+                                    disabled={status === 'loading'}
+                                    className="w-full h-18 text-xs font-bold uppercase tracking-[0.4em] bg-primary hover:bg-secondary text-white shadow-2xl transition-all hover:translate-y-[-4px] rounded-none group"
+                                >
+                                    {status === 'loading' ? (
+                                        <>Sending... <Loader2 className="ml-4 animate-spin" /></>
+                                    ) : (
+                                        <>Send Message <Send size={18} className="ml-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" /></>
+                                    )}
                                 </Button>
+
+                                {status === 'success' && (
+                                    <p className="text-green-500 text-center text-sm font-medium mt-4">Thank you! Your message has been sent successfully.</p>
+                                )}
+                                {status === 'error' && (
+                                    <p className="text-red-500 text-center text-sm font-medium mt-4">Something went wrong. Please try again later.</p>
+                                )}
                             </form>
                         </motion.div>
 

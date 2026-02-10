@@ -174,16 +174,8 @@ export const content = {
         {
             name: "Rakesh Kushwaha",
             role: "Co-Founder",
-            avatar: "https://images.unsplash.com/photo-1566492031773-4f4e44671857?q=80&w=400&h=400&auto=format&fit=crop",
             initials: "RK",
             color: "bg-pink-100 text-pink-600"
-        },
-        {
-            name: "Satpal Sorout",
-            role: "Co-Founder & IT HEAD",
-            avatar: "https://images.unsplash.com/photo-1537511446384-988bebd6fd87?q=80&w=400&h=400&auto=format&fit=crop",
-            initials: "SS",
-            color: "bg-violet-100 text-violet-600"
         }
     ],
     footer: {
@@ -204,8 +196,8 @@ export const content = {
         ],
         socials: [
             { name: "LinkedIn", href: "https://www.linkedin.com/company/nivesh-sarthi/?originalSubdomain=in" },
-            { name: "Instagram", href: "https://www.instagram.com/syndicate_niveshsarthi/" },
-            { name: "Facebook", href: "https://www.facebook.com/niveshsarthi10x/" },
+            { name: "Instagram", href: "https://www.instagram.com/niveshsarthi_/" },
+            { name: "Facebook", href: "https://www.facebook.com/niveshsarthii" },
             { name: "Twitter", href: "https://twitter.com/niveshsarthi" }
         ]
     }

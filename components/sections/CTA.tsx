@@ -4,8 +4,31 @@ import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { content } from '@/app/data/content';
 import { Input } from '@/components/ui/input';
+import { sendEmail } from '@/lib/actions';
+import { useState } from 'react';
+import { Loader2 } from 'lucide-react';
 
 export function CTA() {
+    const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+
+    async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+        event.preventDefault();
+        setStatus('loading');
+
+        const formData = new FormData(event.currentTarget);
+        formData.append('formType', 'Callback Request (Estate)');
+        formData.append('name', 'Interested Investor');
+
+        const result = await sendEmail(formData);
+
+        if (result.success) {
+            setStatus('success');
+            (event.target as HTMLFormElement).reset();
+        } else {
+            setStatus('error');
+        }
+    }
+
     return (
         <section className="py-32 relative overflow-hidden bg-primary">
             <div className="absolute inset-0 bg-pattern-grid opacity-10" />
@@ -46,20 +69,32 @@ export function CTA() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.2 }}
-                        className="flex justify-center"
+                        className="flex flex-col items-center gap-4"
                     >
-                        <div className="flex w-full max-w-xl items-center bg-white/5 p-2 border border-white/10 backdrop-blur-xl group focus-within:border-secondary transition-all">
+                        <form onSubmit={handleSubmit} className="flex w-full max-w-xl items-center bg-white/5 p-2 border border-white/10 backdrop-blur-xl group focus-within:border-secondary transition-all">
                             <Input
+                                name="email"
                                 type="email"
+                                required
                                 placeholder="Enter your email address"
                                 className="bg-transparent border-none text-white h-16 px-6 text-lg placeholder:text-slate-500 focus-visible:ring-0 focus-visible:ring-offset-0 flex-grow"
                             />
                             <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                                <Button className="bg-secondary hover:bg-white hover:text-primary text-white h-16 px-10 rounded-none font-bold uppercase tracking-widest text-xs transition-all shadow-2xl">
-                                    {content.cta.buttonText}
+                                <Button
+                                    type="submit"
+                                    disabled={status === 'loading'}
+                                    className="bg-secondary hover:bg-white hover:text-primary text-white h-16 px-10 rounded-none font-bold uppercase tracking-widest text-xs transition-all shadow-2xl"
+                                >
+                                    {status === 'loading' ? <Loader2 className="animate-spin" /> : content.cta.buttonText}
                                 </Button>
                             </motion.div>
-                        </div>
+                        </form>
+                        {status === 'success' && (
+                            <p className="text-green-500 text-sm font-medium">Thank you! You've been added to our list.</p>
+                        )}
+                        {status === 'error' && (
+                            <p className="text-red-500 text-sm font-medium">Something went wrong. Please try again.</p>
+                        )}
                     </motion.div>
                 </div>
             </div>

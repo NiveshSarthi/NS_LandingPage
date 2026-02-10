@@ -8,6 +8,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Target, Lightbulb, Heart, Users, TrendingUp, ShieldCheck } from 'lucide-react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import { cn } from '@/lib/utils';
 
 export default function AboutPage() {
     return (
@@ -159,18 +160,24 @@ export default function AboutPage() {
                         <SectionHeader title="Meet the Experts" />
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                         {content.team.map((member, idx) => (
                             <div key={idx} className="bg-background rounded-none p-10 text-center shadow-sm hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-slate-50 group">
                                 <div className="relative w-32 h-32 mx-auto mb-8">
                                     <div className="absolute inset-0 border border-secondary/20 rounded-full scale-110 group-hover:scale-125 transition-transform duration-500" />
-                                    <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-white shadow-lg">
-                                        <Image
-                                            src={member.avatar}
-                                            alt={member.name}
-                                            fill
-                                            className="object-cover group-hover:scale-110 transition-transform duration-500"
-                                        />
+                                    <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-white shadow-lg flex items-center justify-center">
+                                        {member.avatar ? (
+                                            <Image
+                                                src={member.avatar}
+                                                alt={member.name}
+                                                fill
+                                                className="object-cover group-hover:scale-110 transition-transform duration-500"
+                                            />
+                                        ) : (
+                                            <div className={cn("w-full h-full flex items-center justify-center text-3xl font-bold uppercase", member.color)}>
+                                                {member.initials}
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
                                 <h4 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors duration-300 whitespace-nowrap">{member.name}</h4>

@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { content } from '@/app/data/content';
@@ -94,9 +95,11 @@ export function Hero() {
                     <Button size="lg" className="bg-secondary hover:bg-secondary/90 text-white gap-3 h-14 px-10 text-sm font-bold uppercase tracking-widest rounded-none transition-all hover:translate-y-[-2px]">
                         {content.hero.cta} <ArrowRight size={18} />
                     </Button>
-                    <Button size="lg" variant="outline" className="bg-transparent border-white/30 text-white hover:bg-white hover:text-primary gap-3 h-14 px-10 text-sm font-bold uppercase tracking-widest rounded-none backdrop-blur-sm transition-all hover:translate-y-[-2px]">
-                        {content.hero.secondaryCta}
-                    </Button>
+                    <Link href="/contact">
+                        <Button size="lg" variant="outline" className="bg-transparent border-white/30 text-white hover:bg-white hover:text-primary gap-3 h-14 px-10 text-sm font-bold uppercase tracking-widest rounded-none backdrop-blur-sm transition-all hover:translate-y-[-2px]">
+                            {content.hero.secondaryCta}
+                        </Button>
+                    </Link>
                 </motion.div>
 
                 {/* Stats Section */}
