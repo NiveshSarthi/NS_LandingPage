@@ -1,99 +1,59 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { SectionHeader } from '@/components/layout/SectionHeader';
 import { content } from '@/app/data/content';
-import Image from 'next/image';
-import { PlayCircle } from 'lucide-react';
 
 export function Features() {
-    const container = {
-        hidden: { opacity: 0 },
-        show: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.1
-            }
-        }
-    };
-
-    const item = {
-        hidden: { opacity: 0, y: 20 },
-        show: { opacity: 1, y: 0 }
-    };
-
     return (
-        <section id="features" className="py-24 bg-background">
-            <div className="container px-4 md:px-6">
+        <section className="py-32 bg-slate-50 relative overflow-hidden">
+            <div className="absolute inset-0 bg-pattern-grid opacity-10" />
 
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-                    {/* Left Content */}
-                    <div className="order-2 lg:order-1">
-                        <div className="inline-block bg-accent/20 text-primary px-4 py-1 rounded-full text-sm font-bold uppercase tracking-wider mb-6">
-                            Why Choose Us
-                        </div>
-                        <h2 className="text-4xl font-bold mb-6 text-foreground leading-tight">
-                            Our Competitive <br />
-                            <span className="text-primary">Advantage</span>
-                        </h2>
-                        <p className="text-muted-foreground mb-10 leading-relaxed max-w-lg">
-                            Conquer the market with unbeatable dominance in property. We combine expertise, technology, and personalized service to deliver exceptional results for every client.
-                        </p>
+            {/* Decorative Vectors */}
+            <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 0.3 }}
+                transition={{ duration: 2 }}
+                className="absolute top-1/4 -left-20 w-80 h-80 bg-secondary/10 rounded-full blur-[100px] animate-float"
+            />
 
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                            {content.features.map((feature, index) => {
-                                const Icon = feature.icon;
-                                return (
-                                    <div key={index} className="flex gap-4 p-4 rounded-xl hover:bg-secondary/10 transition-colors border border-transparent hover:border-secondary/20">
-                                        <div className="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary">
-                                            <Icon size={24} />
-                                        </div>
-                                        <div>
-                                            <h4 className="font-bold text-foreground mb-1">{feature.title}</h4>
-                                            <p className="text-xs text-muted-foreground leading-relaxed">{feature.description}</p>
-                                        </div>
-                                    </div>
-                                )
-                            })}
-                        </div>
-                    </div>
+            <div className="container px-4 md:px-6 relative z-10 mx-auto">
+                <SectionHeader
+                    title="Our Competitive Advantage"
+                    subtitle="Conquer the market with unbeatable dominance in property. We combine expertise, technology, and personalized service."
+                    align="center"
+                    className="max-w-3xl mx-auto mb-20"
+                />
 
-                    {/* Right Video/Image Area */}
-                    <div className="order-1 lg:order-2 relative">
-                        <div className="relative h-[600px] rounded-3xl overflow-hidden shadow-2xl">
-                            <Image
-                                src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&q=80&w=2673"
-                                alt="Competitive Advantage"
-                                fill
-                                className="object-cover"
-                            />
-                            <div className="absolute inset-0 bg-primary/20 hover:bg-primary/10 transition-colors cursor-pointer flex items-center justify-center group">
-                                <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center text-primary shadow-2xl group-hover:scale-110 transition-transform">
-                                    <PlayCircle size={40} className="ml-1" />
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    {content.features.map((feature, index) => {
+                        const Icon = feature.icon;
+                        return (
+                            <motion.div
+                                key={index}
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                transition={{ delay: index * 0.1, duration: 0.6 }}
+                                viewport={{ once: true }}
+                                className="group p-10 bg-white border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_50px_rgba(197,160,89,0.15)] hover:-translate-y-2 transition-all duration-700 rounded-none relative overflow-hidden"
+                            >
+                                <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-secondary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+
+                                <div className="w-16 h-16 bg-slate-50 flex items-center justify-center mb-10 group-hover:bg-primary transition-colors duration-500 shadow-inner">
+                                    <Icon size={28} className="text-secondary group-hover:text-white transition-colors duration-500" />
                                 </div>
-                            </div>
-                        </div>
-
-                        {/* Floating Card */}
-                        <div className="absolute -bottom-10 -left-10 bg-secondary text-secondary-foreground p-8 rounded-3xl shadow-xl max-w-xs hidden md:block">
-                            <h3 className="text-5xl font-bold mb-2">15</h3>
-                            <p className="font-bold text-xl leading-none">Years <br /> of Excellence</p>
-                        </div>
-
-                        {/* Satisfaction Card */}
-                        <div className="absolute top-10 -right-10 bg-white p-4 rounded-xl shadow-xl flex items-center gap-4 hidden md:flex animate-bounce duration-[3000ms]">
-                            <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-600">
-                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                            </div>
-                            <div>
-                                <p className="text-2xl font-bold text-foreground">100%</p>
-                                <p className="text-xs text-muted-foreground">Client Satisfaction</p>
-                            </div>
-                        </div>
-                    </div>
+                                <h3 className="text-xl font-bold mb-4 group-hover:text-primary transition-colors duration-500 uppercase tracking-widest leading-tight">
+                                    {feature.title.split(' ').map((word, i) => (
+                                        <span key={i} className={i === 1 ? "text-gradient-gold block" : "block"}>{word} </span>
+                                    ))}
+                                </h3>
+                                <p className="text-slate-500 text-sm leading-relaxed font-light group-hover:text-slate-600 transition-colors duration-500">
+                                    {feature.description}
+                                </p>
+                            </motion.div>
+                        );
+                    })}
                 </div>
-
             </div>
         </section>
     );

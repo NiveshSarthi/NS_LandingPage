@@ -5,16 +5,20 @@ interface SectionHeaderProps {
     subtitle?: string
     align?: "left" | "center" | "right"
     className?: string
+    inverted?: boolean
 }
 
-export function SectionHeader({ title, subtitle, align = "center", className }: SectionHeaderProps) {
+export function SectionHeader({ title, subtitle, align = "center", className, inverted }: SectionHeaderProps) {
     return (
         <div className={cn("space-y-4 mb-12", {
             "text-center": align === "center",
             "text-left": align === "left",
             "text-right": align === "right",
         }, className)}>
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
+            <h2 className={cn(
+                "text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-6",
+                inverted ? "text-white" : "text-primary"
+            )}>
                 {title}
             </h2>
             {subtitle && (

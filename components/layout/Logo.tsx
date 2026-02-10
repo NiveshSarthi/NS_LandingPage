@@ -4,12 +4,12 @@ import Link from 'next/link';
 export function Logo({ className }: { className?: string }) {
     return (
         <Link href="/" className={`block relative ${className}`}>
-            <div className="relative h-20 w-64 md:h-24 md:w-72">
+            <div className="relative h-12 w-40 md:h-14 md:w-48">
                 <Image
                     src="/SNS.png"
                     alt="NiveshSarthi Logo"
                     fill
-                    className="object-contain"
+                    className="object-contain object-left"
                     priority
                 />
             </div>

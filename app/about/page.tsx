@@ -14,65 +14,70 @@ export default function AboutPage() {
         <main className="min-h-screen bg-background text-foreground">
             <Navbar />
 
-            {/* Hero Section - Split Layout */}
-            <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
-                <div className="absolute top-0 right-0 w-1/2 h-full bg-primary/5 -z-10 rounded-l-full hidden lg:block" />
+            {/* High Impact Hero Section */}
+            <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden flex items-center justify-center text-center">
+                <div className="absolute inset-0 z-0">
+                    <div className="absolute inset-0 bg-pattern-dots opacity-20" />
+                    <Image
+                        src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2670"
+                        alt="Modern Architecture"
+                        fill
+                        className="object-cover opacity-30 grayscale"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/90 to-transparent" />
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(15,23,42,0.8)_100%)]" />
 
-                <div className="container px-4 md:px-6">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
-                        <div>
-                            <div className="inline-block px-4 py-1.5 rounded-full border border-primary/20 bg-primary/10 text-primary text-sm font-medium mb-6">
-                                About NiveshSarthi
-                            </div>
-                            <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight mb-8">
-                                Redefining <br />
-                                <span className="text-primary relative inline-block">
-                                    Real Estate
-                                    <svg className="absolute w-full h-3 -bottom-1 left-0 text-primary/20" viewBox="0 0 100 10" preserveAspectRatio="none">
-                                        <path d="M0 5 Q 50 10 100 5 L 100 0 Q 50 5 0 0 Z" fill="currentColor" />
-                                    </svg>
-                                </span>
-                            </h1>
-                            <p className="text-xl text-muted-foreground leading-relaxed mb-8">
-                                We go beyond traditional brokerage. As your strategic partner, we empower you with data-driven insights and curated opportunities to build lasting wealth through real estate.
-                            </p>
+                    {/* Decorative Vectors */}
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 0.3 }}
+                        transition={{ duration: 2 }}
+                        className="absolute top-1/3 -right-20 w-80 h-80 bg-secondary/10 rounded-full blur-[100px] animate-float"
+                    />
+                </div>
 
-                            {/* Stats */}
-                            <div className="grid grid-cols-3 gap-8 border-t pt-8">
-                                <div>
-                                    <p className="text-3xl font-bold text-foreground">15+</p>
-                                    <p className="text-sm text-muted-foreground mt-1">Years Experience</p>
-                                </div>
-                                <div>
-                                    <p className="text-3xl font-bold text-foreground">1k+</p>
-                                    <p className="text-sm text-muted-foreground mt-1">Happy Familes</p>
-                                </div>
-                                <div>
-                                    <p className="text-3xl font-bold text-foreground">₹500Cr+</p>
-                                    <p className="text-sm text-muted-foreground mt-1">Assets Managed</p>
-                                </div>
-                            </div>
+                <div className="container mx-auto px-4 md:px-6 relative z-10">
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8 }}
+                    >
+                        <div className="inline-flex items-center gap-2 px-6 py-2 rounded-none border border-secondary/30 bg-secondary/10 text-secondary font-bold uppercase tracking-widest text-[10px] mb-8">
+                            <ShieldCheck size={12} />
+                            <span>Legacy of Trust Since 2011</span>
                         </div>
+                        <h1 className="text-4xl md:text-6xl lg:text-8xl font-bold tracking-tight mb-8 text-white leading-[1.1]">
+                            Redefining the <span className="italic text-secondary font-serif">Aura</span> <br /> of Real Estate
+                        </h1>
+                        <p className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto mb-12 font-light leading-relaxed">
+                            We go beyond traditional brokerage. As your strategic partner, we empower you with data-driven insights and curated opportunities to build lasting wealth.
+                        </p>
 
-                        <div className="relative">
-                            <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/5] transform lg:rotate-2 hover:rotate-0 transition-transform duration-500">
-                                <Image
-                                    src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2070"
-                                    alt="Modern Building"
-                                    fill
-                                    className="object-cover"
-                                />
-                            </div>
-                            {/* Floating decorative element */}
-                            <div className="absolute -bottom-6 -left-6 w-full h-full border-2 border-primary/20 rounded-2xl -z-10 hidden md:block" />
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-4xl mx-auto border-t border-white/10 pt-12">
+                            {[
+                                { val: "15+", label: "Years Experience" },
+                                { val: "1k+", label: "Happy Families" },
+                                { val: "₹500Cr+", label: "Assets Managed" }
+                            ].map((stat, i) => (
+                                <motion.div
+                                    key={i}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.8 + (i * 0.1) }}
+                                    className="text-center"
+                                >
+                                    <p className="text-4xl font-bold text-secondary mb-2">{stat.val}</p>
+                                    <p className="text-[10px] text-slate-400 uppercase tracking-[0.2em] font-bold">{stat.label}</p>
+                                </motion.div>
+                            ))}
                         </div>
-                    </div>
+                    </motion.div>
                 </div>
             </section>
 
             {/* Mission & Vision - Creative Grid */}
             <section className="py-24 bg-card">
-                <div className="container px-4 md:px-6">
+                <div className="container mx-auto px-4 md:px-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
                         <Card className="bg-primary text-primary-foreground border-none overflow-hidden relative group">
                             <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-700" />
@@ -115,7 +120,7 @@ export default function AboutPage() {
 
             {/* Core Values - Horizontal Cards */}
             <section className="py-24">
-                <div className="container px-4 md:px-6">
+                <div className="container mx-auto px-4 md:px-6">
                     <div className="text-center max-w-2xl mx-auto mb-16">
                         <SectionHeader title="Our Core Values" subtitle="The pillars that hold up our legacy of trust." />
                     </div>
@@ -127,13 +132,20 @@ export default function AboutPage() {
                             { icon: TrendingUp, title: "Innovation", desc: "Always staying ahead of the curve." },
                             { icon: Target, title: "Excellence", desc: "We don't settle for good. We aim for best." },
                         ].map((item, idx) => (
-                            <div key={idx} className="bg-background border rounded-2xl p-6 hover:border-primary/50 transition-colors group cursor-default">
+                            <motion.div
+                                key={idx}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                transition={{ delay: idx * 0.1 }}
+                                viewport={{ once: true }}
+                                className="bg-background border rounded-2xl p-6 hover:border-primary/50 transition-all duration-300 group cursor-default hover:shadow-xl hover:-translate-y-1"
+                            >
                                 <div className="w-12 h-12 rounded-xl bg-muted group-hover:bg-primary group-hover:text-primary-foreground transition-colors flex items-center justify-center mb-4 text-foreground">
                                     <item.icon size={24} />
                                 </div>
-                                <h4 className="font-bold text-lg mb-2">{item.title}</h4>
+                                <h4 className="font-bold text-lg mb-2 group-hover:text-primary transition-colors">{item.title}</h4>
                                 <p className="text-sm text-muted-foreground">{item.desc}</p>
-                            </div>
+                            </motion.div>
                         ))}
                     </div>
                 </div>
@@ -141,20 +153,28 @@ export default function AboutPage() {
 
             {/* Team Section */}
             <section className="py-24 bg-secondary/5">
-                <div className="container px-4 md:px-6">
+                <div className="container mx-auto px-4 md:px-6">
                     <div className="text-center max-w-2xl mx-auto mb-16">
-                        <p className="text-secondary-foreground font-semibold mb-2 tracking-widest text-xs uppercase">Our Team</p>
+                        <p className="text-secondary font-bold mb-4 tracking-[0.3em] text-[10px] uppercase">Our Team</p>
                         <SectionHeader title="Meet the Experts" />
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
                         {content.team.map((member, idx) => (
-                            <div key={idx} className="bg-background rounded-2xl p-8 text-center shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-                                <div className={`w-24 h-24 mx-auto ${member.color} rounded-full flex items-center justify-center text-3xl font-bold mb-6`}>
-                                    {member.initials}
+                            <div key={idx} className="bg-background rounded-none p-10 text-center shadow-sm hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-slate-50 group">
+                                <div className="relative w-32 h-32 mx-auto mb-8">
+                                    <div className="absolute inset-0 border border-secondary/20 rounded-full scale-110 group-hover:scale-125 transition-transform duration-500" />
+                                    <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-white shadow-lg">
+                                        <Image
+                                            src={member.avatar}
+                                            alt={member.name}
+                                            fill
+                                            className="object-cover group-hover:scale-110 transition-transform duration-500"
+                                        />
+                                    </div>
                                 </div>
-                                <h4 className="text-xl font-bold mb-2">{member.name}</h4>
-                                <p className="text-primary font-medium">{member.role}</p>
+                                <h4 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors duration-300 whitespace-nowrap">{member.name}</h4>
+                                <p className="text-secondary font-bold text-[10px] uppercase tracking-widest">{member.role}</p>
                             </div>
                         ))}
                     </div>

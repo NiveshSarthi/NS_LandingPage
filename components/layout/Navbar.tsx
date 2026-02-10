@@ -40,63 +40,57 @@ export function Navbar() {
         <React.Fragment>
             <motion.header
                 layout
-                transition={springTransition}
+                initial={{ y: -100 }}
+                animate={{ y: 0 }}
                 className={cn(
-                    "fixed z-50",
-                    isScrolled
-                        ? "top-6 left-1/2 -translate-x-1/2 w-[90%] max-w-5xl rounded-full bg-black/80 backdrop-blur-md border border-white/10 shadow-lg py-1.5 px-6"
-                        : "top-0 left-0 right-0 w-full bg-transparent py-6"
+                    "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
+                    (isScrolled || pathname !== '/')
+                        ? "bg-primary/95 backdrop-blur-lg border-b border-white/5 py-3 shadow-lg"
+                        : "bg-transparent py-7"
                 )}
             >
-                <motion.div
-                    layout
-                    transition={springTransition}
-                    className={cn(
-                        "flex items-center w-full",
-                        isScrolled ? "justify-between" : "justify-center"
-                    )}
-                >
-                    {/* Logo Section */}
-                    <motion.div
-                        layout
-                        transition={springTransition}
-                        className={cn(
-                            "relative flex-shrink-0",
-                            isScrolled ? "scale-70 origin-left" : "scale-110"
-                        )}
-                    >
-                        <Logo />
-                    </motion.div>
+                <div className="container mx-auto px-4 md:px-6">
+                    <div className="flex items-center justify-between">
+                        {/* Logo Section */}
+                        <div className="flex-shrink-0">
+                            <Logo />
+                        </div>
 
-                    {/* Desktop Navigation - Only visible when scrolled */}
-                    <AnimatePresence>
-                        {isScrolled && (
-                            <motion.nav
-                                initial={{ opacity: 0, x: 20 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                exit={{ opacity: 0, x: 20 }}
-                                transition={{ delay: 0.1, duration: 0.3 }}
-                                className="hidden md:flex items-center gap-6"
-                            >
-                                {links.map((link) => (
-                                    <Link
-                                        key={link.href}
-                                        href={link.href}
-                                        className={cn(
-                                            "text-sm font-medium transition-colors hover:text-yellow-400",
-                                            pathname === link.href ? "text-yellow-400" : "text-white/90"
-                                        )}
-                                    >
-                                        {link.label}
-                                    </Link>
-                                ))}
-                                <Button size="sm" className="bg-yellow-500 text-black hover:bg-yellow-400 rounded-full px-6 font-semibold">
+                        {/* Desktop Navigation */}
+                        <nav className="hidden md:flex items-center gap-10">
+                            {links.map((link) => (
+                                <Link
+                                    key={link.href}
+                                    href={link.href}
+                                    className={cn(
+                                        "text-[13px] font-medium uppercase tracking-[0.15em] transition-all hover:text-secondary relative group",
+                                        pathname === link.href ? "text-secondary" : "text-white/80"
+                                    )}
+                                >
+                                    {link.label}
+                                    <span className={cn(
+                                        "absolute -bottom-1 left-0 w-0 h-0.5 bg-secondary transition-all duration-300 group-hover:w-full",
+                                        pathname === link.href ? "w-full" : ""
+                                    )} />
+                                </Link>
+                            ))}
+                        </nav>
+
+                        {/* CTA Section */}
+                        <div className="hidden md:flex items-center">
+                            <Link href="/contact">
+                                <Button size="sm" className="bg-secondary hover:bg-secondary/90 text-white rounded-none px-8 h-11 font-bold uppercase tracking-widest text-[10px] shadow-lg transition-transform hover:translate-y-[-2px]">
                                     Book Consult
                                 </Button>
-                            </motion.nav>
-                        )}
-                    </AnimatePresence>
-                </motion.div>
+                            </Link>
+                        </div>
+
+                        {/* Mobile Menu Toggle */}
+                        <button className="md:hidden text-white p-2">
+                            <Menu size={28} />
+                        </button>
+                    </div>
+                </div>
             </motion.header>
 
             {/* Mobile Menu Button - Fixed bottom right or top right? Keeping simple for now, maybe add mobile overlay later if needed. 

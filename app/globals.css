@@ -57,81 +57,144 @@
 }
 
 :root {
-  --background: #f8f7ff;
-  /* Very light purple tint */
-  --foreground: #1e1b4b;
-  /* Deep Indigo 950 */
+  --background: #ffffff;
+  --foreground: #0f172a;
+  /* Deep Navy */
 
   --card: #ffffff;
-  --card-foreground: #1e1b4b;
+  --card-foreground: #0f172a;
 
   --popover: #ffffff;
-  --popover-foreground: #1e1b4b;
+  --popover-foreground: #0f172a;
 
-  --primary: #7c3aed;
-  /* Violet 600 */
+  --primary: #0f172a;
+  /* Deep Navy */
   --primary-foreground: #ffffff;
 
-  --secondary: #eab308;
-  /* Yellow 500 for accents/gold touches */
-  --secondary-foreground: #1e1b4b;
+  --secondary: #c5a059;
+  /* Champagne Gold */
+  --secondary-foreground: #ffffff;
 
-  --muted: #f3f4f6;
-  --muted-foreground: #6b7280;
+  --muted: #f1f5f9;
+  /* Slate 100 */
+  --muted-foreground: #64748b;
+  /* Slate 500 */
 
-  --accent: #ddd6fe;
-  /* Violet 200 */
-  --accent-foreground: #1e1b4b;
+  --accent: #f8fafc;
+  /* Slate 50 */
+  --accent-foreground: #0f172a;
 
   --destructive: #ef4444;
   --destructive-foreground: #f8fafc;
 
   --border: #e2e8f0;
   --input: #e2e8f0;
-  --ring: #7c3aed;
+  --ring: #c5a059;
 
-  --radius: 1rem;
-  /* More rounded cards */
+  --radius: 0.5rem;
+  /* Slightly more sharp/professional radius */
 }
 
 .dark {
-  --background: #1e1b4b;
-  /* Deep Indigo */
+  --background: #0f172a;
   --foreground: #f8fafc;
 
-  --card: #2e1065;
-  /* Darker Violet */
+  --card: #1e293b;
   --card-foreground: #f8fafc;
 
-  --popover: #2e1065;
+  --popover: #1e293b;
   --popover-foreground: #f8fafc;
 
-  --primary: #a78bfa;
-  /* Violet 400 */
-  --primary-foreground: #1e1b4b;
+  --primary: #c5a059;
+  /* Gold as primary in dark mode */
+  --primary-foreground: #0f172a;
 
-  --secondary: #fbbf24;
-  /* Amber 400 */
-  --secondary-foreground: #1e1b4b;
+  --secondary: #334155;
+  --secondary-foreground: #f8fafc;
 
-  --muted: #4c1d95;
-  --muted-foreground: #a78bfa;
+  --muted: #1e293b;
+  --muted-foreground: #94a3b8;
 
-  --accent: #5b21b6;
+  --accent: #334155;
   --accent-foreground: #ffffff;
 
   --destructive: #7f1d1d;
   --destructive-foreground: #f8fafc;
 
-  --border: #4c1d95;
-  --input: #4c1d95;
-  --ring: #a78bfa;
+  --border: #334155;
+  --input: #334155;
+  --ring: #c5a059;
 }
 
 body {
   background-color: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans), system-ui, sans-serif;
+  font-family: var(--font-inter), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.font-serif {
+  font-family: var(--font-playfair), serif;
+}
+
+.font-sans {
+  font-family: var(--font-inter), sans-serif;
+}
+
+/* --- Design Patterns & Vectors --- */
+.bg-pattern-dots {
+  background-image: radial-gradient(#c5a059 0.5px, transparent 0.5px);
+  background-size: 20px 20px;
+}
+
+.bg-pattern-grid {
+  background-image: linear-gradient(to right, rgba(197, 160, 89, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(197, 160, 89, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.bg-pattern-circuit {
+  background-image: radial-gradient(circle at 2px 2px, rgba(197, 160, 89, 0.1) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+/* --- Innovative Utility Classes --- */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.gold-glow {
+  box-shadow: 0 0 20px rgba(197, 160, 89, 0.2);
+}
+
+.gold-glow-hover:hover {
+  box-shadow: 0 0 30px rgba(197, 160, 89, 0.4);
+}
+
+.text-gradient-gold {
+  background: linear-gradient(to right, #c5a059, #e2c99d, #c5a059);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* --- Animations --- */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
 }

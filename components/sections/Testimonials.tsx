@@ -1,13 +1,15 @@
 'use client';
 
 import * as React from 'react';
+import { Button } from '@/components/ui/button';
+import Image from 'next/image';
+import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
 import { SectionHeader } from '@/components/layout/SectionHeader';
 import { content } from '@/app/data/content';
 import { ChevronLeft, ChevronRight, Quote, Star, Users } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import Image from 'next/image';
+
 
 export function Testimonials() {
     const [current, setCurrent] = React.useState(0);
@@ -22,98 +24,120 @@ export function Testimonials() {
     };
 
     return (
-        <section id="testimonials" className="py-24 bg-background overflow-hidden">
-            <div className="container px-4 md:px-6">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <section id="testimonials" className="py-24 bg-background overflow-hidden relative">
+            <div className="absolute inset-0 bg-pattern-dots opacity-5" />
+
+            {/* Decorative Vectors */}
+            <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 0.3 }}
+                transition={{ duration: 2 }}
+                className="absolute -bottom-20 -left-20 w-96 h-96 bg-secondary/5 rounded-full blur-[120px] animate-float"
+            />
+
+            <div className="container mx-auto px-4 md:px-6 relative z-10">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
 
                     {/* Left Content */}
                     <div>
-                        <div className="inline-block bg-primary/10 text-primary px-4 py-1 rounded-full text-sm font-bold uppercase tracking-wider mb-6">
-                            Client Testimonials
-                        </div>
-                        <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">
+                        <motion.div
+                            initial={{ opacity: 0, x: -20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            className="inline-block border-l-4 border-secondary px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] bg-primary/5 text-primary mb-8"
+                        >
+                            Trust & Excellence
+                        </motion.div>
+                        <motion.h2
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.1 }}
+                            className="text-4xl md:text-5xl lg:text-7xl font-bold mb-8 text-primary leading-tight"
+                        >
                             What Our <br />
-                            <span className="text-primary">Happy Clients Say!</span>
-                        </h2>
-                        <p className="text-lg text-muted-foreground leading-relaxed mb-10">
-                            With over a decade of experience, we have successfully delivered smiles with highest ROI at lowest investment.
-                        </p>
+                            <span className="text-gradient-gold">Happy Clients</span> Say!
+                        </motion.h2>
+                        <motion.p
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.2 }}
+                            className="text-lg text-slate-500 leading-relaxed mb-12 font-light"
+                        >
+                            With over a decade of excellence in the NCR real estate market, we have successfully delivered value and smiles to hundreds of investors.
+                        </motion.p>
 
-                        <div className="flex gap-4">
-                            <Card className="flex-1 border-none shadow-md bg-white">
-                                <CardContent className="p-6 text-center">
-                                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-3 text-primary">
-                                        <Users size={24} />
-                                    </div>
-                                    <h4 className="text-2xl font-bold text-foreground">997+</h4>
-                                    <p className="text-sm text-muted-foreground">Happy Clients</p>
-                                </CardContent>
-                            </Card>
-                            <Card className="flex-1 border-none shadow-md bg-white">
-                                <CardContent className="p-6 text-center">
-                                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-3 text-primary">
-                                        <Star size={24} />
-                                    </div>
-                                    <h4 className="text-2xl font-bold text-foreground">1000+</h4>
-                                    <p className="text-sm text-muted-foreground">Properties Sold</p>
-                                </CardContent>
-                            </Card>
-                            <Card className="flex-1 border-none shadow-md bg-white">
-                                <CardContent className="p-6 text-center">
-                                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-3 text-primary">
-                                        <Quote size={24} />
-                                    </div>
-                                    <h4 className="text-2xl font-bold text-foreground">15+</h4>
-                                    <p className="text-sm text-muted-foreground">Years Experience</p>
-                                </CardContent>
-                            </Card>
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                            {[
+                                { val: "997+", label: "Happy Clients", accent: false },
+                                { val: "1000+", label: "Properties Sold", accent: true },
+                                { val: "15+", label: "Years Exp.", accent: false }
+                            ].map((stat, i) => (
+                                <motion.div
+                                    key={i}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: 0.3 + (i * 0.1) }}
+                                    className={cn(
+                                        "p-8 text-center bg-white border border-slate-100 shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1",
+                                        stat.accent ? "border-t-secondary border-t-4" : ""
+                                    )}
+                                >
+                                    <h4 className="text-3xl font-serif font-medium text-primary mb-2 whitespace-nowrap">{stat.val}</h4>
+                                    <p className="text-[10px] text-slate-400 uppercase tracking-widest font-bold">{stat.label}</p>
+                                </motion.div>
+                            ))}
                         </div>
                     </div>
 
                     {/* Right Carousel */}
-                    <div className="relative">
-                        <Card className="border-none shadow-xl bg-white relative overflow-hidden h-[400px] flex items-center">
-                            <div className="absolute top-0 right-0 p-8 opacity-10">
-                                <Quote size={120} className="text-primary transform -scale-x-100" />
-                            </div>
+                    <motion.div
+                        initial={{ opacity: 0, x: 30 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8 }}
+                        className="relative"
+                    >
+                        <div className="bg-white p-10 md:p-16 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] relative overflow-hidden border border-slate-50">
+                            <Quote size={80} className="text-secondary/10 absolute top-10 right-10" />
 
-                            <CardContent className="p-8 md:p-12 relative z-10 w-full">
-                                <AnimatePresence mode="wait">
-                                    <motion.div
-                                        key={current}
-                                        initial={{ opacity: 0, x: 50 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        exit={{ opacity: 0, x: -50 }}
-                                        transition={{ duration: 0.3 }}
-                                        className="space-y-6"
-                                    >
-                                        <div className="flex gap-1 text-secondary">
-                                            {[...Array(5)].map((_, i) => (
-                                                <Star key={i} size={20} fill="currentColor" />
-                                            ))}
-                                        </div>
-                                        <p className="text-xl md:text-2xl text-foreground font-medium italic leading-relaxed">
-                                            &quot;{content.testimonials[current].quote}&quot;
-                                        </p>
+                            <AnimatePresence mode="wait">
+                                <motion.div
+                                    key={current}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, y: -20 }}
+                                    transition={{ duration: 0.4 }}
+                                    className="space-y-8"
+                                >
+                                    <div className="flex gap-1 text-secondary">
+                                        {[...Array(5)].map((_, i) => (
+                                            <Star key={i} size={16} fill="currentColor" />
+                                        ))}
+                                    </div>
+                                    <p className="text-2xl md:text-3xl text-primary font-serif font-medium italic leading-relaxed">
+                                        &quot;{content.testimonials[current].quote}&quot;
+                                    </p>
 
-                                        <div className="flex items-center gap-4 pt-4">
-                                            <div className="relative w-14 h-14">
-                                                <Image
-                                                    src={content.testimonials[current].avatar}
-                                                    alt={content.testimonials[current].name}
-                                                    fill
-                                                    className="rounded-full object-cover border-2 border-primary"
-                                                />
-                                            </div>
-                                            <div>
-                                                <h4 className="font-bold text-lg text-foreground">{content.testimonials[current].name}</h4>
-                                                <p className="text-primary text-sm font-medium">{content.testimonials[current].role}</p>
-                                            </div>
+                                    <div className="flex items-center gap-6 pt-6 border-t border-slate-100">
+                                        <div className="relative w-16 h-16 grayscale hover:grayscale-0 transition-all duration-500">
+                                            <Image
+                                                src={content.testimonials[current].avatar}
+                                                alt={content.testimonials[current].name}
+                                                fill
+                                                className="object-cover border-2 border-secondary p-1"
+                                            />
                                         </div>
-                                    </motion.div>
-                                </AnimatePresence>
-                            </CardContent>
-                        </Card>
+                                        <div>
+                                            <h4 className="text-xl font-bold text-primary">{content.testimonials[current].name}</h4>
+                                            <p className="text-secondary text-xs uppercase tracking-widest font-bold mt-1">{content.testimonials[current].role}</p>
+                                        </div>
+                                    </div>
+                                </motion.div>
+                            </AnimatePresence>
+                        </div>
 
                         {/* Controls */}
                         <div className="flex justify-end gap-4 mt-6">
@@ -124,8 +148,7 @@ export function Testimonials() {
                                 <ChevronRight size={20} />
                             </Button>
                         </div>
-                    </div>
-
+                    </motion.div>
                 </div>
             </div>
         </section>

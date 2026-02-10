@@ -67,21 +67,21 @@ export const content = {
             name: "Monica Goel",
             role: "Happy Client",
             quote: "The team at Nivesh Sarthi went above and beyond to find us the perfect commercial space for our business. Their dedication and commitment to our needs were truly remarkable.",
-            avatar: "https://i.pravatar.cc/150?u=a042581f4e29026024d",
+            avatar: "https://images.unsplash.com/photo-1589156229687-496a31ad1d1f?q=80&w=200&h=200&auto=format&fit=crop",
             rating: 5
         },
         {
             name: "Rahul Sharma",
             role: "Home Owner",
             quote: "Buying my first home was seamless with them. They handled everything from documentation to handing over the keys.",
-            avatar: "https://i.pravatar.cc/150?u=a042581f4e29026704d",
+            avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=200&h=200&auto=format&fit=crop",
             rating: 5
         },
         {
             name: "Amit Patel",
             role: "Investor",
             quote: "Professionalism at its best. My ROI has significantly increased after their advisory.",
-            avatar: "https://i.pravatar.cc/150?u=a04258114e29026302d",
+            avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=200&h=200&auto=format&fit=crop",
             rating: 5
         }
     ],
@@ -167,18 +167,21 @@ export const content = {
         {
             name: "Rahul Kushwaha",
             role: "Founder & CEO",
+            avatar: "/images/Rahul_Profile.jpeg",
             initials: "RK",
             color: "bg-purple-100 text-purple-600"
         },
         {
             name: "Rakesh Kushwaha",
             role: "Co-Founder",
+            avatar: "https://images.unsplash.com/photo-1566492031773-4f4e44671857?q=80&w=400&h=400&auto=format&fit=crop",
             initials: "RK",
             color: "bg-pink-100 text-pink-600"
         },
         {
             name: "Satpal Sorout",
             role: "Co-Founder & IT HEAD",
+            avatar: "https://images.unsplash.com/photo-1537511446384-988bebd6fd87?q=80&w=400&h=400&auto=format&fit=crop",
             initials: "SS",
             color: "bg-violet-100 text-violet-600"
         }
@@ -203,7 +206,7 @@ export const content = {
             { name: "LinkedIn", href: "https://www.linkedin.com/company/nivesh-sarthi/?originalSubdomain=in" },
             { name: "Instagram", href: "https://www.instagram.com/syndicate_niveshsarthi/" },
             { name: "Facebook", href: "https://www.facebook.com/niveshsarthi10x/" },
-            { name: "Twitter", href: "#" }
+            { name: "Twitter", href: "https://twitter.com/niveshsarthi" }
         ]
     }
 };
