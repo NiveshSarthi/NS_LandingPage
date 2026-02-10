@@ -47,7 +47,7 @@ export default function CareersPage() {
                             <Rocket size={12} />
                             <span>We are hiring!</span>
                         </div>
-                        <h1 className="text-3xl md:text-6xl lg:text-8xl font-bold tracking-tight mb-8 text-white leading-[1.1]">
+                        <h1 className="text-3xl md:text-5xl lg:text-7xl font-bold tracking-tight mb-8 text-white leading-[1.2]">
                             Build the <span className="italic text-secondary font-serif">Future</span> <br /> of Real Estate
                         </h1>
                         <p className="text-base md:text-xl text-slate-300 max-w-2xl mx-auto mb-12 font-light leading-relaxed">

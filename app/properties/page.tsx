@@ -56,7 +56,7 @@ export default function PropertiesPage() {
                             <ShieldCheck size={12} className="relative z-10" />
                             <span className="relative z-10">Verified Listings Only</span>
                         </div>
-                        <h1 className="text-4xl md:text-7xl lg:text-9xl font-bold tracking-tight mb-8 text-white leading-[1.1]">
+                        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-8 text-white leading-[1.1]">
                             Exclusive <span className="text-gradient-gold">Estates</span>
                         </h1>
                         <p className="text-base md:text-xl text-slate-400 max-w-2xl mx-auto mb-12 font-light leading-relaxed">

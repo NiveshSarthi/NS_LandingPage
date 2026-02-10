@@ -46,7 +46,7 @@ export default function AboutPage() {
                             <ShieldCheck size={12} />
                             <span>Legacy of Trust Since 2011</span>
                         </div>
-                        <h1 className="text-3xl md:text-6xl lg:text-8xl font-bold tracking-tight mb-8 text-white leading-[1.1]">
+                        <h1 className="text-3xl md:text-5xl lg:text-7xl font-bold tracking-tight mb-8 text-white leading-[1.2]">
                             Redefining the <span className="italic text-secondary font-serif">Aura</span> <br /> of Real Estate
                         </h1>
                         <p className="text-base md:text-xl text-slate-300 max-w-2xl mx-auto mb-12 font-light leading-relaxed">
